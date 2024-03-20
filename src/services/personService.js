@@ -1,4 +1,4 @@
-const baseUrl = "/api/persons";
+const baseUrl = "https://phonebook-app-zpsg.onrender.com/api/persons";
 
 function getPersons() {
   return fetch(baseUrl)
