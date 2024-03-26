@@ -6,6 +6,6 @@ export default defineConfig({
   base: "/phonebook-client/",
   plugins: [react()],
   serever: {
-    proxy: "https://phonebook-app-zpsg.onrender.com",
+    proxy: "http://localhost:8080",
   },
 });
