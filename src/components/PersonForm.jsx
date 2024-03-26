@@ -23,11 +23,14 @@ const PersonForm = ({ persons, setPersons }) => {
   };
 
   return (
-    <form onSubmit={addPerson} className="flex flex-col g-4 bg-green-500 p-4">
+    <form
+      onSubmit={addPerson}
+      className="flex flex-col g-4 boder-solid border-2 border-slate-500 p-4"
+    >
       <div className="flex flex-col">
         <label>Name</label>
         <input
-          className="h-8"
+          className="boder-solid border-2 border-slate-500 p-2"
           type="text"
           value={newPerson}
           onChange={(e) => setNewPerson(e.target.value)}
@@ -36,13 +39,16 @@ const PersonForm = ({ persons, setPersons }) => {
       <div className="flex flex-col">
         <label>Phone Nubmer</label>
         <input
-          className="h-8"
+          className="boder-solid border-2 border-slate-500 p-2"
           type="text"
           value={newNumber}
           onChange={(e) => setNewNumber(e.target.value)}
         />
       </div>
-      <button className="bg-blue-500 py-2 text-white font-bold" type="submit">
+      <button
+        className="bg-green-500 py-2 mt-4 text-white font-bold"
+        type="submit"
+      >
         Add
       </button>
     </form>

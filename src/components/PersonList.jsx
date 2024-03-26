@@ -1,8 +1,10 @@
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import personService from "../services/personService";
 import { FaTrashAlt, FaSpinner } from "react-icons/fa";
 
-const PersonList = ({ persons, setPersons }) => {
+const PersonList = () => {
+  const [persons, setPersons] = useState([]);
+
   useEffect(() => {
     personService
       .getPersons()
@@ -17,14 +19,14 @@ const PersonList = ({ persons, setPersons }) => {
   const deletePerson = (id) => {
     personService
       .deletePerson(id)
-      .then((response) => {
+      .then(() => {
         setPersons(persons.filter((person) => person.id !== id));
       })
       .catch((error) => console.log(error));
   };
 
   return (
-    <ul className="bg-slate-700 text-white p-4">
+    <ul className="boder-solid border-2 border-slate-500 p-4">
       {persons.map((person) => (
         <li key={person.id} className="flex items-center justify-between">
           • {person.name} ({person.number}){"  "}
