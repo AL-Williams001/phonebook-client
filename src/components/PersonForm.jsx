@@ -1,12 +1,13 @@
 import { useState } from "react";
 import personService from "../services/personService";
 
-const PersonForm = ({ persons, setPersons }) => {
+function PersonForm({ persons, setPersons }) {
   const [newPerson, setNewPerson] = useState("");
   const [newNumber, setNewNumber] = useState("");
 
   const addPerson = (e) => {
     e.preventDefault();
+
     const personObject = {
       name: newPerson,
       number: newNumber,
@@ -25,34 +26,31 @@ const PersonForm = ({ persons, setPersons }) => {
   return (
     <form
       onSubmit={addPerson}
-      className="flex flex-col g-4 boder-solid border-2 border-slate-500 p-4"
+      className="flex flex-col gap-4 p-4 border-solid border-2 border-slate-500 text-black-500"
     >
       <div className="flex flex-col">
         <label>Name</label>
         <input
-          className="boder-solid border-2 border-slate-500 p-2"
+          className="border-solid border-2 border-slate-500 p-2 "
           type="text"
           value={newPerson}
           onChange={(e) => setNewPerson(e.target.value)}
         />
       </div>
       <div className="flex flex-col">
-        <label>Phone Nubmer</label>
+        <label>Phone Number</label>
         <input
-          className="boder-solid border-2 border-slate-500 p-2"
+          className="border-solid border-2 border-slate-500 p-2"
           type="text"
           value={newNumber}
           onChange={(e) => setNewNumber(e.target.value)}
         />
       </div>
-      <button
-        className="bg-green-500 py-2 mt-4 text-white font-bold"
-        type="submit"
-      >
+      <button className="bg-green-500 py-2 text-white font-bold" type="submit">
         Add
       </button>
     </form>
   );
-};
+}
 
 export default PersonForm;

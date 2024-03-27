@@ -1,46 +1,51 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import loginService from "../services/loginService";
-import personService from "../services/personService";
+import userService from "../services/userService";
 
-function LoginForm({
-  user,
-  username,
-  password,
-  setUsername,
-  setPassword,
-  setUser,
-}) {
+function RegisterForm({ user }) {
+  const [name, setName] = useState("");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
     if (user?.token) navigate("/");
   }, [user, navigate]);
 
-  const handleLogin = (e) => {
+  const handleRegistration = (e) => {
     e.preventDefault();
 
-    loginService
-      .login({ username, password })
-      .then((res) => {
-        window.localStorage.setItem("loggedPhonebookUser", JSON.stringify(res));
-        personService.setToken(res.token);
-        setUser(res);
+    userService
+      .register({ name, username, password })
+      .then((_res) => {
+        navigate("/login");
+        setName("");
         setUsername("");
         setPassword("");
       })
-      .catch((error) => console.log(error));
+      .catch((err) => console.log(err));
   };
 
   return (
     <div className="flex flex-col gap-4">
       <h1 className="text-4xl mb-4 text-center font-bold text-black-500">
-        Login your account
+        Register an account
       </h1>
       <form
-        onSubmit={handleLogin}
+        onSubmit={handleRegistration}
         className="border-solid border-2 border-slate-500 p-4 flex flex-col gap-2"
       >
+        <div className="flex flex-col ">
+          <label>Name</label>
+          <input
+            type="text"
+            name="name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            className="border-solid border-2 border-slate-500 p-2 "
+          />
+        </div>
+
         <div className="flex flex-col ">
           <label>Username</label>
           <input
@@ -62,13 +67,13 @@ function LoginForm({
           />
         </div>
         <button type="submit" className="bg-green-500 p-2 text-white font-bold">
-          Login
+          Register
         </button>
       </form>
       <p className="text-center">
-        Don't have and account? Click to{" "}
-        <Link to="/register" className="text-blue-500">
-          Register
+        Already have and account? Click to{" "}
+        <Link to="/login" className="text-blue-500">
+          Login
         </Link>
         .
       </p>
@@ -76,4 +81,4 @@ function LoginForm({
   );
 }
 
-export default LoginForm;
+export default RegisterForm;

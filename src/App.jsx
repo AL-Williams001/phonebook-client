@@ -1,15 +1,18 @@
+import { useNavigate } from "react-router-dom";
 import "./App.css";
 import { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
+import LoginForm from "./components/LoginForm";
+import RegisterForm from "./components/RegisterForm";
 import personService from "./services/personService";
 import Phonebook from "./pages/Phonebook";
-import LoginForm from "./components/LoginForm";
 
 function App() {
   const [persons, setPersons] = useState([]);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [user, setUser] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const loggedUserJSON = window.localStorage.getItem("loggedPhonebookUser");
@@ -19,7 +22,7 @@ function App() {
       setUser(user);
       personService.setToken(user.token);
     }
-  }, []);
+  }, [navigate]);
 
   return (
     <div className="flex flex-col p-4">
@@ -48,6 +51,7 @@ function App() {
             />
           }
         />
+        <Route path="/register" element={<RegisterForm user={user} />} />
       </Routes>
     </div>
   );
