@@ -39,13 +39,14 @@ function LoginForm({
       </h1>
       <form
         onSubmit={handleLogin}
-        className="border-solid border-2 border-slate-500 p-4 flex flex-col gap-2"
+        className="border-solid border-2 border-slate-500 p-4 flex flex-col gap-2 md:w-1/3 lg:mx-auto"
       >
         <div className="flex flex-col ">
           <label>Username</label>
           <input
             type="text"
             name="username"
+            autoComplete="current-username"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
             className="border-solid border-2 border-slate-500 p-2 "
@@ -56,6 +57,7 @@ function LoginForm({
           <input
             type="password"
             name="password"
+            autoComplete="current-password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             className="border-solid border-2 border-slate-500 p-2 "

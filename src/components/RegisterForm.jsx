@@ -33,7 +33,7 @@ function RegisterForm({ user }) {
       </h1>
       <form
         onSubmit={handleRegistration}
-        className="border-solid border-2 border-slate-500 p-4 flex flex-col gap-2"
+        className="border-solid border-2 border-slate-500 p-4 flex flex-col gap-2 md:w-1/3 lg:mx-auto"
       >
         <div className="flex flex-col ">
           <label>Name</label>

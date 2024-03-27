@@ -1,12 +1,11 @@
 import { useEffect } from "react";
 import personService from "../services/personService";
-import userService from "../services/userService";
 import { FaTrashAlt } from "react-icons/fa";
 
-function PersonList({ user, persons, setPersons }) {
+function PersonList({ persons, setPersons }) {
   useEffect(() => {
-    userService
-      .getUser(user.id)
+    personService
+      .getPersons()
       .then((response) => {
         setPersons(response);
       })

@@ -12,7 +12,11 @@ function getPersons() {
   // return fetch(baseUrl)
   //   .then((res) => res.json())
   //   .then((data) => data);
-  return axios.get(baseUrl).then((res) => res.data);
+  const config = {
+    headers: { Authorization: token },
+  };
+
+  return axios.get(baseUrl, config).then((res) => res.data);
 }
 
 function createPerson(person) {
