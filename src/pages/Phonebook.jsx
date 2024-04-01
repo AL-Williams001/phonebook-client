@@ -21,8 +21,12 @@ function Phonebook({ user, persons, setPersons, setUser }) {
     <div className="flex flex-col gap-2">
       <h1 className="text-4xl mb-4 text-center font-bold">Phonebook</h1>
 
-      <PersonList user={user} persons={persons} setPersons={setPersons} />
-      <PersonForm persons={persons} setPersons={setPersons} />
+      {user && (
+        <>
+          <PersonList user={user} persons={persons} setPersons={setPersons} />
+          <PersonForm persons={persons} setPersons={setPersons} />
+        </>
+      )}
 
       <p className="flex justify-between items-center text-sm">
         {user?.name} is logged in{" "}

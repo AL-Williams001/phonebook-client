@@ -9,9 +9,6 @@ function setToken(newToken) {
 }
 
 function getPersons() {
-  // return fetch(baseUrl)
-  //   .then((res) => res.json())
-  //   .then((data) => data);
   const config = {
     headers: { Authorization: token },
   };
@@ -20,15 +17,6 @@ function getPersons() {
 }
 
 function createPerson(person) {
-  // return fetch(baseUrl, {
-  //   method: "POST",
-  //   headers: {
-  //     "Content-Type": "application/json",
-  //   },
-  //   body: JSON.stringify(person),
-  // })
-  //   .then((res) => res.json())
-  //   .then((data) => data);
   const config = {
     headers: { Authorization: token },
   };
@@ -36,12 +24,11 @@ function createPerson(person) {
 }
 
 function deletePerson(id) {
-  // return fetch(`${baseUrl}/${id}`, {
-  //   method: "DELETE",
-  // })
-  //   .then((res) => res.json)
-  //   .then((data) => data);
-  return axios.delete(`${baseUrl}/${id}`).then((res) => res.status);
+  const config = {
+    headers: { Authorization: token },
+  };
+
+  return axios.delete(`${baseUrl}/${id}`, config).then((res) => res.status);
 }
 
 export default {

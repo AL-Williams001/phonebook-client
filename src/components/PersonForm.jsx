@@ -20,7 +20,10 @@ function PersonForm({ persons, setPersons }) {
         setNewPerson("");
         setNewNumber("");
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        console.error("Error adding person:", error);
+        // Handle error display to the user
+      });
   };
 
   return (
@@ -29,17 +32,19 @@ function PersonForm({ persons, setPersons }) {
       className="flex flex-col gap-4 p-4 border-solid border-2 border-slate-500 text-black-500"
     >
       <div className="flex flex-col">
-        <label>Name</label>
+        <label htmlFor="name">Name</label>
         <input
-          className="border-solid border-2 border-slate-500 p-2 "
+          id="name"
+          className="border-solid border-2 border-slate-500 p-2"
           type="text"
           value={newPerson}
           onChange={(e) => setNewPerson(e.target.value)}
         />
       </div>
       <div className="flex flex-col">
-        <label>Phone Number</label>
+        <label htmlFor="phoneNumber">Phone Number</label>
         <input
+          id="phoneNumber"
           className="border-solid border-2 border-slate-500 p-2"
           type="text"
           value={newNumber}
